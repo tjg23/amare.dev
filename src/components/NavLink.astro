@@ -9,6 +9,37 @@ const { pathname } = Astro.url;
 const isActive = href === pathname || href === pathname.replace(/\/$/, '');
 ---
 
-<a class:list={[className, { 'underline decoration-1 underline-offset-2': isActive }]} href={href} {...props}>
-    <slot />
+<a class:list={['nav-link', className, { active: isActive }]} href={href} {...props}>
+	<slot />
 </a>
+
+<style is:global>
+	a.nav-link {
+		color: var(--text-main);
+		font-size: 0.95rem;
+		font-weight: 400;
+		font-family: 'Archivo', sans-serif;
+		letter-spacing: 0.03em;
+		text-decoration: none;
+		transition: color 0.2s ease;
+	}
+
+	a.nav-link::after {
+		content: '';
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background: var(--accent);
+		transition: width 0.3s ease;
+	}
+
+	a.nav-link:hover {
+		color: var(--accent);
+	}
+
+	a.nav-link:hover::after {
+		width: 100%;
+	}
+</style>

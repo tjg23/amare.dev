@@ -1,6 +1,7 @@
 ---
 import { marked } from 'marked';
 import type { Hero as HeroProps } from '#types';
+import siteConfig from '#data/site-config';
 import Button from './Button.astro';
 import CustomImage from './CustomImage.astro';
 
@@ -12,6 +13,30 @@ const { title, image, text, actions } = Astro.props;
 {
 	(title || image?.src || text || (actions && actions.length > 0)) && (
 		<section class="mb-16 flex w-full flex-col gap-8 sm:mb-24">
+			{siteConfig.avatar?.src && (
+				<a href="/">
+					<CustomImage
+						class="aspect-square w-16 rounded-full object-cover sm:w-20"
+						{...siteConfig.avatar}
+						loading="eager"
+						fetchpriority="high"
+						width={80}
+						height={80}
+						widths={[80, 160]}
+						sizes="80px"
+					/>
+				</a>
+			)}
+			<div class="grow">
+				{siteConfig.avatar?.src ? (
+					<p id="hero-title">{siteConfig.title}</p>
+				) : (
+					<a id="hero-title" href="/">
+						{siteConfig.title}
+					</a>
+				)}
+				{siteConfig.subtitle && <p class="text-sm leading-tight">{siteConfig.subtitle}</p>}
+			</div>
 			{title && <h1 class="font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>}
 			{image?.src && (
 				<figure>
@@ -37,3 +62,21 @@ const { title, image, text, actions } = Astro.props;
 		</section>
 	)
 }
+
+<style>
+	@reference "tailwindcss";
+
+	#hero-title {
+		@apply sm:text-3xl;
+		font-family: 'Newsreader Variable', serif;
+		font-size: var(--text-2xl) /* 1.5rem = 24px */;
+		--leading: var(--leading-tight);
+		line-height: var(--leading, var(--text-2xl--line-height) /* calc(2 / 1.5) ≈ 1.333333 */);
+		font-weight: var(--font-weight-medium) /* 500 */;
+
+		@media (width >= 40rem /* 640px */) {
+			font-size: var(--text-3xl) /* 1.875rem = 30px */;
+			line-height: var(--leading, var(--text-3xl--line-height) /* calc(2.25 / 1.875) ≈ 1.2 */);
+		}
+	}
+</style>
