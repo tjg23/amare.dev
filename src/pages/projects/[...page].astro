@@ -5,10 +5,10 @@ import Pagination from '#components/Pagination.astro';
 import ProjectPreview from '#components/ProjectPreview.astro';
 import siteConfig from '#data/site-config';
 import BaseLayout from '#layouts/Layout.astro';
-import { sortItemsByDateDesc } from '#utils/data-utils';
+import { byDateDesc } from '#utils/data-utils';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
-	const projects = (await getCollection('projects')).sort(sortItemsByDateDesc);
+	const projects = (await getCollection('projects')).sort(byDateDesc);
 	return paginate(projects, { pageSize: siteConfig.projectsPerPage || 6 });
 }
 
@@ -18,7 +18,7 @@ const { page } = Astro.props;
 const portfolio = page.data;
 ---
 
-<BaseLayout title="Portfolio" description="Explore a diverse portfolio showcasing my passion and expertise" showHeader={false}>
+<BaseLayout title="Portfolio" description="Explore a diverse portfolio showcasing my passion and expertise">
 	<h1 class="mb-12 font-serif text-2xl leading-tight italic sm:mb-16 sm:text-4xl">Projects</h1>
 	{portfolio.map((project) => <ProjectPreview project={project} class="mb-10 sm:mb-12" />)}
 	<Pagination page={page} class="my-16 sm:my-24" />
