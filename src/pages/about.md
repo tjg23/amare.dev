@@ -1,4 +1,5 @@
 ---
+layout: ../layouts/MdLayout.astro
 title: About
 seo:
   title: About Me

@@ -1,19 +1,18 @@
 ---
 import { ClientRouter } from 'astro:transitions';
-import BaseHead, { type Props as HeadProps } from '#components/BaseMeta.astro';
+import Meta, { type Props as HeadProps } from '#layouts/Meta.astro';
 import Header from '#components/Header.astro';
 import Footer from '#components/Footer.astro';
-import Nav from '#components/Nav.astro';
 
 export type Props = HeadProps;
 
-const head = Astro.props;
+const meta = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en" class="wrap-break-words antialiased">
 	<head>
-		<BaseHead {...head} />
+		<Meta {...meta} />
 		<script>
 			if (localStorage.theme === 'dark') {
 				document.documentElement.classList.add('dark');

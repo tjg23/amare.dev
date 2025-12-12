@@ -1,4 +1,5 @@
 ---
+layout: ../layouts/MdLayout.astro
 title: Get in touch
 seo:
   title: Contact

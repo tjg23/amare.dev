@@ -1,4 +1,5 @@
 ---
+layout: ../layouts/MdLayout.astro
 title: Terms of Service
 seo:
   title: Terms of Service
