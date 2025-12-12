@@ -34,9 +34,9 @@ Clicking the button above ☝️ will create a new repo for you that looks exact
 
 ## ⚙️ Configuration Notes
 
-### `site-config.ts`
+### `site.config.ts`
 
-All site-wide data and theme options are stored in `src/data/site-config.ts`. It provides a single configuration object used throughout the theme for navigation, branding, hero content, social links, and more.
+All site-wide data and theme options are stored in `src/site.config.ts`. It provides a single configuration object used throughout the theme for navigation, branding, hero content, social links, and more.
 
 You can update this file to customize:
 
@@ -54,7 +54,7 @@ Images can be referenced either as imports from `src/assets/` (for optimized Ast
 The theme uses a `CustomImage` component that automatically displays images using Astro’s optimized `<Image />` or a standard `<img>` tag depending on the source.
 
 - Content collection images (used in posts or pages) must be stored in `src/assets/` since they use Astro’s `image()` schema.
-- Site-config images (like the avatar, hero image, or social preview) can either be imported from `src/assets/` for optimization or referenced directly from `public/` if you prefer not to optimize them.
+- site.config images (like the avatar, hero image, or social preview) can either be imported from `src/assets/` for optimization or referenced directly from `public/` if you prefer not to optimize them.
 
 ## Project Structure
 

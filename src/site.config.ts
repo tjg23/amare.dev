@@ -63,7 +63,7 @@ const siteConfig: SiteConfig = {
 	},
 	subscribe: {
 		enabled: true,
-		title: 'Subscribe to Dante Newsletter',
+		title: 'Subscribe to my Newsletter',
 		text: 'One update per week. All the latest posts directly in your inbox.',
 		form: {
 			action: '#'
