@@ -5,69 +5,65 @@ import Button from '#components/Button.astro';
 import CustomImage from '#components/CustomImage.astro';
 
 const title = "Hi, I'm Tyler";
-const text = `I'm currently a senior at Iowa State University, pursuing a double major in Software Engineering and Philosophy.
-	My passion lies in creating software that improves people's lives and facilitates human flourishing.
-	Feel free to explore my projects and writing, and if you see anything that piques your interest, I'd love to connect!
+const text = `I'm currently a senior in Software Engineering and Philosophy at Iowa State University, and an amateur
+	full-stack developer. My passion lies in creating software that brings people happiness and improves their lives.
+	I built this site to be a [serendipity engine](https://x.com/visakanv/status/1431177580766453763?s=20), so please
+	explore, and if you see anything that piques your interest, I'd love to connect!
 	`;
-const actions = [
-	{ text: 'Get in Touch', href: '/contact' },
-	{ text: 'View Projects', href: '/projects' }
-];
 const { image } = Astro.props;
 ---
 
-{
-	(title || image?.src || text || (actions && actions.length > 0)) && (
-		<section class="mb-16 flex w-full flex-col gap-8 sm:mb-24">
-			{siteConfig.avatar?.src && (
-				<a href="/">
-					<CustomImage
-						class="aspect-square w-16 rounded-full object-cover sm:w-20"
-						{...siteConfig.avatar}
-						loading="eager"
-						fetchpriority="high"
-						width={80}
-						height={80}
-						widths={[80, 160]}
-						sizes="80px"
-					/>
+<section class="mb-16 flex w-full flex-col gap-8 sm:mb-24">
+	{
+		siteConfig.avatar?.src && (
+			<a href="/">
+				<CustomImage
+					class="aspect-square w-16 rounded-full object-cover sm:w-20"
+					{...siteConfig.avatar}
+					loading="eager"
+					fetchpriority="high"
+					width={80}
+					height={80}
+					widths={[80, 160]}
+					sizes="80px"
+				/>
+			</a>
+		)
+	}
+	<div class="grow">
+		{
+			siteConfig.avatar?.src ? (
+				<p id="hero-title">{siteConfig.title}</p>
+			) : (
+				<a id="hero-title" href="/">
+					{siteConfig.title}
 				</a>
-			)}
-			<div class="grow">
-				{siteConfig.avatar?.src ? (
-					<p id="hero-title">{siteConfig.title}</p>
-				) : (
-					<a id="hero-title" href="/">
-						{siteConfig.title}
-					</a>
-				)}
-				{siteConfig.subtitle && <p class="text-sm leading-tight">{siteConfig.subtitle}</p>}
-			</div>
-			{title && <h1 class="font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>}
-			{image?.src && (
-				<figure>
-					<CustomImage
-						class="w-full"
-						{...image}
-						widths={[480, 640, 768, 1024, 1536]}
-						sizes="(min-width: 832px) 768px, calc(100vw - 32px)"
-						fetchpriority="high"
-						loading="eager"
-					/>
-					{image.caption && <figcaption class="mt-1.5 text-xs sm:text-sm">{image.caption}</figcaption>}
-				</figure>
-			)}
-			{text && <div class="prose sm:prose-lg max-w-none" set:html={marked.parse(text)} />}
-			{actions && actions.length > 0 && (
-				<div class="flex flex-wrap gap-4">
-					{actions.map((action) => (
-						<Button href={action.href}>{action.text}</Button>
-					))}
-				</div>
-			)}
-		</section>
-	)
-}
+			)
+		}
+		{siteConfig.subtitle && <p class="text-sm leading-tight">{siteConfig.subtitle}</p>}
+	</div>
+	{title && <h1 class="font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>}
+	{
+		image?.src && (
+			<figure>
+				<CustomImage
+					class="w-full"
+					{...image}
+					widths={[480, 640, 768, 1024, 1536]}
+					sizes="(min-width: 832px) 768px, calc(100vw - 32px)"
+					fetchpriority="high"
+					loading="eager"
+				/>
+				{image.caption && <figcaption class="mt-1.5 text-xs sm:text-sm">{image.caption}</figcaption>}
+			</figure>
+		)
+	}
+	{text && <div class="prose sm:prose-lg max-w-none" set:html={marked.parse(text)} />}
+	<div class="flex flex-wrap gap-4">
+		<Button href={'/contact'}>{'Get in Touch'}</Button>
+		<Button href={'/projects'}>{'View my Work'}</Button>
+	</div>
+</section>
 
 <style>
 	@reference "tailwindcss";
