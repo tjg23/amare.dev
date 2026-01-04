@@ -40,9 +40,9 @@ const { image } = Astro.props;
 				</a>
 			)
 		}
-		{siteConfig.subtitle && <p class="text-sm leading-tight">{siteConfig.subtitle}</p>}
+		{siteConfig.subtitle && <p id="hero-subtitle">{siteConfig.subtitle}</p>}
 	</div>
-	{title && <h1 class="font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>}
+	{title && <h1 class="mt-6 font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>}
 	{
 		image?.src && (
 			<figure>
@@ -69,15 +69,22 @@ const { image } = Astro.props;
 	@reference "tailwindcss";
 
 	#hero-title {
-		font-family: 'Crimson Pro', serif;
-		font-size: var(--text-2xl) /* 1.5rem = 24px */;
-		--leading: var(--leading-tight);
-		line-height: var(--leading, var(--text-2xl--line-height) /* calc(2 / 1.5) ≈ 1.333333 */);
-		font-weight: var(--font-weight-medium) /* 500 */;
+		font-family: 'Monaspace Krypton', monospace;
+		font-size: 1.5rem;
+		line-height: 1.25;
+		font-weight: var(--font-weight-medium);
 
 		@media (width >= 40rem /* 640px */) {
-			font-size: var(--text-3xl) /* 1.875rem = 30px */;
-			line-height: var(--leading, var(--text-3xl--line-height) /* calc(2.25 / 1.875) ≈ 1.2 */);
+			font-size: 1.75rem;
+			line-height: var(--leading, var(--text-3xl--line-height));
 		}
+	}
+
+	#hero-subtitle {
+		font-family: 'Monaspace Neon', monospace;
+		font-size: var(--text-sm) /* 0.875rem = 14px */;
+		line-height: var(--tw-leading, var(--text-sm--line-height) /* calc(1.25 / 0.875) ≈ 1.428571 */);
+		--tw-leading: var(--leading-tight) /* 1.25 */;
+		line-height: var(--leading-tight) /* 1.25 */;
 	}
 </style>
