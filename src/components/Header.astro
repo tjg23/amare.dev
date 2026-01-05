@@ -1,13 +1,25 @@
 ---
 import NavLink from '#components/NavLink.astro';
 import ThemeToggle from '#components/ThemeToggle.astro';
-import siteConfig from '#site.config';
 
-const navLinks = siteConfig.headerNavLinks ?? [];
+const navLinks = [
+	{
+		text: 'Home',
+		href: '/'
+	},
+	{
+		text: 'Portfolio',
+		href: '/portfolio'
+	},
+	{
+		text: 'Blog',
+		href: '/blog'
+	}
+];
 ---
 
 <header id="site-header">
-	<a href="/" id="logo"><em>Amare</em></a>
+	<a href="/" id="logo">#[<span>&lt3</span>]</a>
 	<nav aria-label="Primary Navigation">
 		<button id="nav-menu-button" aria-label="Open Menu" aria-expanded="false" aria-controls="nav-links">
 			<span class="icon"></span>
@@ -28,6 +40,8 @@ const navLinks = siteConfig.headerNavLinks ?? [];
 </header>
 
 <style is:global>
+	@reference '#styles/global.css';
+
 	#site-header {
 		position: fixed;
 		top: 0;
@@ -49,12 +63,23 @@ const navLinks = siteConfig.headerNavLinks ?? [];
 	}
 
 	#logo {
-		font-family: 'Crimson Pro', serif;
-		font-size: 1.5rem;
+		@apply hover-underline;
+		font-family: 'Monaspace Krypton', monospace;
+		font-size: 1.25rem;
 		font-weight: 300;
 		letter-spacing: 0.02em;
 		text-decoration: none;
-		color: var(--text-main);
+		color: var(--text-muted);
+		span {
+			font-weight: 500;
+			color: var(--text-main);
+		}
+
+		&:hover {
+			span {
+				color: var(--text-color-accent);
+			}
+		}
 	}
 
 	#nav-links {

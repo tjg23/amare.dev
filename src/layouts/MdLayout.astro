@@ -17,12 +17,16 @@ const { title, seo } = frontmatter;
 ---
 
 <BaseLayout title={seo?.title ?? title} description={seo?.description} image={seo?.image}>
-	<article class="mb-16 sm:mb-24">
-		<header class="mb-8">
-			<h1 class="font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>
+	<article>
+		<header>
+			<h1>{title}</h1>
 		</header>
-		<div class="prose sm:prose-lg max-w-none">
+		<section class="prose sm:prose-lg max-w-none">
 			<slot />
-		</div>
+		</section>
 	</article>
 </BaseLayout>
+
+<style is:global>
+	@import '#styles/article.css';
+</style>

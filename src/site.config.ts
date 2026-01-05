@@ -9,44 +9,6 @@ const siteConfig: SiteConfig = {
 		src: '/dante-preview.jpg',
 		alt: 'Dante - Astro.js and Tailwind CSS theme'
 	},
-	headerNavLinks: [
-		{
-			text: 'Home',
-			href: '/'
-		},
-		{
-			text: 'Projects',
-			href: '/projects'
-		},
-		{
-			text: 'Blog',
-			href: '/blog'
-		}
-	],
-	footerNavLinks: [
-		{
-			text: 'About',
-			href: '/about'
-		},
-		{
-			text: 'Contact',
-			href: '/contact'
-		},
-		{
-			text: 'Terms',
-			href: '/terms'
-		}
-	],
-	socialLinks: [
-		{
-			text: 'Instagram',
-			href: 'https://instagram.com/'
-		},
-		{
-			text: 'X/Twitter',
-			href: 'https://twitter.com/'
-		}
-	],
 	subscribe: {
 		enabled: true,
 		title: 'Subscribe to my Newsletter',

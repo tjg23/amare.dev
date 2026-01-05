@@ -29,21 +29,25 @@ const { Content } = await render(project);
 ---
 
 <BaseLayout title={seo?.title ?? title} description={seo?.description ?? description} image={seo?.image} pageType="article">
-	<article class="mb-16 sm:mb-24">
-		<header class="mb-8">
-			<h1 class="font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>
+	<article>
+		<header>
+			<h1>{title}</h1>
 		</header>
-		<div class="prose sm:prose-lg max-w-none">
+		<section class="prose sm:prose-lg max-w-none">
 			<Content />
-		</div>
+		</section>
 	</article>
 	{
 		(prevProject || nextProject) && (
-			<div class="my-16 sm:my-24">
-				<h2 class="mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">View Next</h2>
-				{nextProject && <ProjectPreview project={nextProject} class="mb-10 sm:mb-12" headingLevel="h3" />}
-				{prevProject && <ProjectPreview project={prevProject} class="mb-10 sm:mb-12" headingLevel="h3" />}
-			</div>
+			<nav id="article-series">
+				<h2>View Next</h2>
+				{nextProject && <ProjectPreview project={nextProject} headingLevel="h3" />}
+				{prevProject && <ProjectPreview project={prevProject} headingLevel="h3" />}
+			</nav>
 		)
 	}
 </BaseLayout>
+
+<style is:global>
+	@import '#styles/article.css';
+</style>

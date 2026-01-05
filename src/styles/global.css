@@ -48,27 +48,104 @@
 	font-style: oblique 0deg 11deg;
 }
 
-:root {
-	--text-main: #171717;
-	--bg-main: #f2f1ec;
-	--bg-muted: #eae9e1;
-	--border-main: #171717;
-}
+@layer theme {
+	:root {
+		--text-main: var(--color-stone-900);
+		--text-muted: var(--color-stone-800);
+		--text-faint: var(--color-stone-700);
+		--bg-main: var(--color-stone-100);
+		--bg-muted: #eae9e1;
+		--border-main: var(--color-stone-900);
 
-html.dark {
-	--text-main: #f2f1ec;
-	--bg-main: #171717;
-	--bg-muted: #242424;
-	--border-main: #f2f1ec;
+		/* Phthalo-inspired greens - cool, vibrant blue-greens */
+		--green-text: oklch(43.2% 0.095 166.913);
+		/* Rich, readable green for text & headings */
+		--green-interactive: oklch(50.8% 0.118 165.612);
+		/* Vibrant for buttons & links */
+		--green-hover: oklch(69.6% 0.17 162.48);
+		/* Bright for hover states */
+		--green-muted: oklch(90.5% 0.093 164.15);
+		/* Soft for backgrounds */
+		--green-subtle: oklch(95% 0.052 163.051);
+		/* Very light for subtle backgrounds */
+
+		--accent: var(--green-text);
+		--bg-accent: #c4b5a0;
+		--emphasis: var(--green-interactive);
+	}
+
+	html.dark {
+		--text-main: var(--color-stone-100);
+		--text-muted: var(--color-stone-300);
+		--text-faint: var(--color-stone-400);
+		--bg-main: var(--color-stone-900);
+		--bg-muted: var(--color-stone-800);
+		--border-main: var(--color-stone-100);
+
+		/* Dark mode: softer, glowing greens */
+		--green-text: oklch(59.6% 0.145 163.225);
+		/* Bright, legible on dark */
+		--green-interactive: oklch(44.2% 0.145 170.913);
+		/* Vivid for interaction */
+		--green-hover: oklch(53.8% 0.128 165.612);
+		/* Lighter for hover */
+		--green-muted: oklch(37.8% 0.077 168.94);
+		/* Muted for dark backgrounds */
+		--green-subtle: oklch(26.2% 0.051 172.552);
+		/* Very dark for subtle areas */
+
+		--accent: #c4b5a0;
+		--bg-accent: var(--green-muted);
+		--emphasis: var(--green-interactive);
+	}
 }
 
 @theme inline {
-	--font-sans: 'Inter Variable', sans-serif;
-	--font-serif: 'Newsreader Variable', serif;
+	--font-sans: 'Inter Variable',
+		sans-serif;
+	--font-serif: 'Newsreader Variable',
+		serif;
 	--text-color-main: var(--text-main);
+	--text-color-muted: var(--text-muted);
+	--text-color-faint: var(--text-faint);
+	--text-color-accent: var(--green-text);
+
 	--background-color-main: var(--bg-main);
 	--background-color-muted: var(--bg-muted);
+	--background-color-accent: var(--green-muted);
 	--border-color-main: var(--border-main);
+	--color-accent: var(--green-text);
+	--color-emphasis: var(--green-interactive);
+	--color-interactive: var(--green-interactive);
+	--color-interactive-hover: var(--green-hover);
+}
+
+@utility hover-underline {
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		bottom: -0.1em;
+		left: 0;
+		width: 0;
+		height: 1px;
+		background: var(--text-color-accent);
+		transition: width 0.3s ease;
+	}
+
+	&:hover::after {
+		width: 100%;
+	}
+}
+
+@utility button-icon-color {
+	fill: currentColor;
+	transition: color 0.2s ease;
+
+	&:hover {
+		fill: var(--text-color-accent);
+	}
 }
 
 @layer utilities {
@@ -91,7 +168,19 @@ html.dark {
 	}
 
 	.prose a {
-		@apply underline font-normal decoration-1 underline-offset-2 decoration-dashed hover:decoration-solid;
+		@apply underline font-normal decoration-2 underline-offset-2 decoration-solid decoration-accent hover:text-accent;
+
+		transition: color 0.2s ease;
+
+		&[href^="http"]:not([href^="https://amare.dev"]) {
+			@apply relative pr-2;
+
+			&::after {
+				@apply absolute -top-1 -right-0.5 text-xs/[1];
+				content: '┓' / ', external';
+				color: var(--text-color-accent);
+			}
+		}
 	}
 
 	.prose :where(h1, h2, h3, h4, h5, h6) {

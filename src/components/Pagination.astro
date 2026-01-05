@@ -6,28 +6,48 @@ import IconButton from '#components/IconButton.astro';
 const { page, class: className } = Astro.props;
 ---
 
-<nav aria-label="Pagination" class:list={['relative px-12 py-2 text-center', className]}>
+<nav aria-label="Pagination" id="pagination">
 	{
 		page.url.prev && (
-			<IconButton
-				class="absolute top-1/2 left-0 -translate-y-1/2"
-				href={page.url.prev}
-				aria-label={`Go to page ${page.currentPage - 1} of ${page.lastPage}`}
-			>
-				<ArrowLeft class="h-5 w-5 fill-current" />
+			<IconButton id="prev-page-button" href={page.url.prev} aria-label={`Go to page ${page.currentPage - 1} of ${page.lastPage}`}>
+				<ArrowLeft />
 			</IconButton>
 		)
 	}
-	<span class="text-sm" aria-current="page">Page {page.currentPage} of {page.lastPage}</span>
+	<span aria-current="page">Page {page.currentPage} of {page.lastPage}</span>
 	{
 		page.url.next && (
-			<IconButton
-				class="absolute top-1/2 right-0 -translate-y-1/2"
-				href={page.url.next}
-				aria-label={`Go to page ${page.currentPage + 1} of ${page.lastPage}`}
-			>
-				<ArrowRight class="h-5 w-5 fill-current" />
+			<IconButton id="next-page-button" href={page.url.next} aria-label={`Go to page ${page.currentPage + 1} of ${page.lastPage}`}>
+				<ArrowRight />
 			</IconButton>
 		)
 	}
 </nav>
+
+<style is:global>
+	@reference '#styles/global.css';
+
+	nav#pagination {
+		@apply relative my-16 px-12 py-2 text-center sm:my-24;
+
+		& > span {
+			@apply text-sm;
+		}
+	}
+
+	#prev-page-button {
+		@apply absolute top-1/2 left-0 -translate-y-1/2;
+
+		& > svg {
+			@apply size-5 fill-current;
+		}
+	}
+
+	#next-page-button {
+		@apply absolute top-1/2 right-0 -translate-y-1/2;
+
+		& > svg {
+			@apply size-5 fill-current;
+		}
+	}
+</style>

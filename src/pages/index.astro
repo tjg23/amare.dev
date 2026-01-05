@@ -17,30 +17,40 @@ const featuredProjects = projects.filter(({ data }) => data.isFeatured);
 
 <BaseLayout description={siteConfig.description}>
 	<Hero />
-	{
-		featuredProjects?.length > 0 && (
-			<section class="mb-16 sm:mb-24">
-				<h2 class="mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">Projects</h2>
-				{featuredProjects.map((project) => (
-					<ProjectPreview project={project} class="mb-10 sm:mb-12" headingLevel="h3" />
-				))}
-				<div class="mt-12 sm:mt-16">
-					<Button href="/projects">View All Projects</Button>
-				</div>
-			</section>
-		)
-	}
-	{
-		featuredPosts?.length > 0 && (
-			<section class="mb-16 sm:mb-24">
-				<h2 class="mb-12 font-serif text-xl italic sm:mb-16 sm:text-2xl">Writing</h2>
-				{featuredPosts.map((post) => (
-					<PostPreview post={post} class="mb-10 sm:mb-12" headingLevel="h3" />
-				))}
-				<div class="mt-12 sm:mt-16">
-					<Button href="/blog">View All Posts</Button>
-				</div>
-			</section>
-		)
-	}
+	<!-- <Portfolio /> -->
+	<section>
+		<a href="/portfolio" class="section-label">Portfolio</a>
+		<h2 class="section-heading">My Work</h2>
+		{featuredProjects.map((project) => <ProjectPreview project={project} headingLevel="h3" />)}
+		<!-- <div class="mt-12 sm:mt-16">
+			<Button href="/portfolio">View All Projects</Button>
+		</div> -->
+	</section>
+	<!-- <Blog /> -->
+	<section>
+		<a href="/blog" class="section-label">Blog</a>
+		<h2 class="section-heading">My Writing</h2>
+		{featuredPosts.map((post) => <PostPreview post={post} headingLevel="h3" />)}
+		<!-- <div class="mt-12 sm:mt-16">
+			<Button href="/blog">View All Posts</Button>
+		</div> -->
+	</section>
 </BaseLayout>
+
+<style is:global>
+	@reference '#styles/global.css';
+
+	section {
+		@apply mb-16 sm:mb-24;
+	}
+
+	.section-label {
+		@apply text-accent hover-underline mb-2 block w-max text-sm tracking-widest uppercase;
+
+		font-family: 'Monaspace Krypton', sans-serif;
+	}
+
+	.section-heading {
+		@apply mb-12 font-serif text-2xl sm:mb-16 sm:text-3xl;
+	}
+</style>

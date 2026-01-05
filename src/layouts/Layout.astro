@@ -23,9 +23,19 @@ const meta = Astro.props;
 	</head>
 	<body class="bg-main text-main">
 		<Header />
-		<main class="mx-auto mt-28 w-full max-w-3xl grow px-4">
+		<main>
 			<slot />
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style is:global>
+	@reference '#styles/global.css';
+
+	@layer base {
+		main {
+			@apply mx-auto mt-28 w-full max-w-3xl grow px-4;
+		}
+	}
+</style>

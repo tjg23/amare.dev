@@ -1,0 +1,27 @@
+---
+import LinkedinLogo from '#assets/icons/linkedin-logo.svg';
+import GithubLogo from '#assets/icons/github-logo.svg';
+---
+
+<social-links {...Astro.props}>
+	<a href="https://linkedin.com/in/tyler-gorton" aria-label="Tyler Gorton's LinkedIn Profile">
+		<LinkedinLogo />
+	</a>
+	<a href="https://github.com/tjg23" aria-label="Tyler Gorton's GitHub Profile">
+		<GithubLogo />
+	</a>
+</social-links>
+
+<style is:global>
+	@reference '#styles/global.css';
+
+	@layer components {
+		social-links {
+			@apply flex items-center gap-4;
+
+			& > a > svg {
+				@apply button-icon-color size-6;
+			}
+		}
+	}
+</style>

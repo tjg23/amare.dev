@@ -1,0 +1,21 @@
+@reference '#styles/global.css';
+
+article {
+	@apply mb-24 max-sm:mb-16;
+}
+
+article>header {
+	@apply mb-8;
+
+	&>h1 {
+		@apply font-serif text-5xl leading-tight font-medium max-sm:text-3xl;
+	}
+}
+
+nav#article-series {
+	@apply my-16 sm:my-24;
+
+	&>h2 {
+		@apply mb-16 font-serif text-2xl max-sm:mb-12 max-sm:text-xl;
+	}
+}

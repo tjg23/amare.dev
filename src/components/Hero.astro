@@ -1,19 +1,22 @@
 ---
 import { marked } from 'marked';
+
 import siteConfig from '#site.config';
+import SocialLinks from '#components/SocialLinks.astro';
 import Button from '#components/Button.astro';
 import CustomImage from '#components/CustomImage.astro';
 
-const title = "Hi, I'm Tyler";
+const heading = "Hi, I'm Tyler";
 const text = `I'm currently a senior in Software Engineering and Philosophy at Iowa State University, and an amateur
 	full-stack developer. My passion lies in creating software that brings people happiness and improves their lives.
-	I built this site to be a [serendipity engine](https://x.com/visakanv/status/1431177580766453763?s=20), so please
-	explore, and if you see anything that piques your interest, I'd love to connect!
+	The purpose of this site is discoverability — to act as a [serendipity engine](https://x.com/visakanv/status/1431177580766453763?s=20)
+	— so please explore, and if you see anything that piques your interest, I'd love to connect!
 	`;
 const { image } = Astro.props;
 ---
 
-<section class="mb-16 flex w-full flex-col gap-8 sm:mb-24">
+<section id="hero">
+	<!-- <ProfileCard /> -->
 	{
 		siteConfig.avatar?.src && (
 			<a href="/">
@@ -30,19 +33,15 @@ const { image } = Astro.props;
 			</a>
 		)
 	}
-	<div class="grow">
-		{
-			siteConfig.avatar?.src ? (
-				<p id="hero-title">{siteConfig.title}</p>
-			) : (
-				<a id="hero-title" href="/">
-					{siteConfig.title}
-				</a>
-			)
-		}
-		{siteConfig.subtitle && <p id="hero-subtitle">{siteConfig.subtitle}</p>}
-	</div>
-	{title && <h1 class="mt-6 font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight">{title}</h1>}
+	<profile-card>
+		<p id="nameplate">
+			{siteConfig.title}
+		</p>
+		<p id="subtitle">{siteConfig.subtitle}</p>
+		<SocialLinks />
+	</profile-card>
+	<!-- <HeroHeader /> -->
+	<h1>{heading}</h1>
 	{
 		image?.src && (
 			<figure>
@@ -58,33 +57,35 @@ const { image } = Astro.props;
 			</figure>
 		)
 	}
-	{text && <div class="prose sm:prose-lg max-w-none" set:html={marked.parse(text)} />}
+	<div class="prose sm:prose-lg max-w-none" set:html={marked.parse(text)} />
 	<div class="flex flex-wrap gap-4">
-		<Button href={'/contact'}>{'Get in Touch'}</Button>
-		<Button href={'/projects'}>{'View my Work'}</Button>
+		<Button primary href={'/contact'}>Get in Touch</Button>
+		<Button href={'/about'}>Read More</Button>
 	</div>
 </section>
 
-<style>
-	@reference "tailwindcss";
+<style is:global>
+	@reference "#styles/global.css";
 
-	#hero-title {
-		font-family: 'Monaspace Krypton', monospace;
-		font-size: 1.5rem;
-		line-height: 1.25;
-		font-weight: var(--font-weight-medium);
+	section#hero {
+		@apply flex w-full flex-col gap-8;
+	}
 
-		@media (width >= 40rem /* 640px */) {
-			font-size: 1.75rem;
-			line-height: var(--leading, var(--text-3xl--line-height));
+	profile-card {
+		@apply grow;
+
+		& > #nameplate {
+			@apply text-2xl font-medium sm:text-[1.75rem];
+			font-family: 'Monaspace Krypton', monospace;
+		}
+
+		& > #subtitle {
+			@apply text-muted pb-4 text-sm leading-tight;
+			font-family: 'Monaspace Neon', monospace;
 		}
 	}
 
-	#hero-subtitle {
-		font-family: 'Monaspace Neon', monospace;
-		font-size: var(--text-sm) /* 0.875rem = 14px */;
-		line-height: var(--tw-leading, var(--text-sm--line-height) /* calc(1.25 / 0.875) ≈ 1.428571 */);
-		--tw-leading: var(--leading-tight) /* 1.25 */;
-		line-height: var(--leading-tight) /* 1.25 */;
+	section#hero > h1 {
+		@apply mt-6 font-serif text-3xl leading-tight font-medium sm:text-5xl sm:leading-tight;
 	}
 </style>

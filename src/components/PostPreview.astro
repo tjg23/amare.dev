@@ -10,29 +10,67 @@ const { title, publishDate, updatedDate, excerpt } = post.data;
 const TitleTag = headingLevel;
 ---
 
-<a class:list={['group flex items-start justify-between gap-8', className]} href={`/blog/${post.id}/`}>
-	<div class="grow">
-		<TitleTag
-			class="font-serif text-xl leading-tight font-medium group-hover:underline group-hover:decoration-dashed group-hover:decoration-1 group-hover:underline-offset-4 sm:text-2xl"
-		>
-			{title}
-		</TitleTag>
-		<div class="mt-1 text-sm leading-normal">
-			<FormattedDate date={publishDate} />
-			{
-				updatedDate && (
-					<>
-						{' '}
-						<span>
-							(Updated on <FormattedDate date={updatedDate} />)
-						</span>
-					</>
-				)
-			}
-		</div>
-		{excerpt && <div class="mt-3 text-sm leading-normal">{excerpt}</div>}
+<a class:list={['post-card', className]} href={`/blog/${post.id}/`}>
+	<div class="post-date">
+		<FormattedDate date={publishDate} />
+		{
+			updatedDate && (
+				<>
+					{' '}
+					<span>
+						(Updated on <FormattedDate date={updatedDate} />)
+					</span>
+				</>
+			)
+		}
 	</div>
-	<div class="hidden font-serif italic opacity-0 transition group-hover:opacity-100 sm:inline-flex sm:shrink-0 sm:items-center sm:gap-1">
-		Read Post <ArrowRight class="h-4 w-4 fill-current" />
+	<TitleTag class="post-title">
+		{title}
+	</TitleTag>
+	{excerpt && <div class="post-description">{excerpt}</div>}
+	<div class="post-open">
+		Read Post <ArrowRight />
 	</div>
 </a>
+
+<style is:global>
+	@reference '#styles/global.css';
+
+	a.post-card {
+		@apply relative mb-10 block items-start justify-between gap-8 sm:mb-12;
+	}
+
+	.post-date {
+		@apply text-faint mb-2 text-xs leading-normal;
+		font-family: 'Monaspace Argon', 'Archivo', monospace;
+	}
+
+	.post-title {
+		@apply hover-underline font-serif text-xl leading-tight font-medium sm:text-2xl sm:font-semibold;
+
+		.post-card:hover & {
+			@apply after:w-full;
+		}
+	}
+
+	.post-description {
+		@apply mt-3 text-sm leading-normal;
+	}
+
+	.post-open {
+		@apply text-accent flex items-center gap-1 text-sm opacity-0 transition;
+		font-family: 'Monaspace Neon', 'Archivo', sans-serif;
+
+		@variant sm {
+			@apply absolute top-7 right-0;
+		}
+
+		.post-card:hover & {
+			@apply opacity-100;
+		}
+
+		& > svg {
+			@apply size-4 fill-current;
+		}
+	}
+</style>
