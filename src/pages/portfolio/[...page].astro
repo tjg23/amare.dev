@@ -6,7 +6,7 @@ import Pagination from '#components/Pagination.astro';
 import ProjectPreview from '#components/ProjectPreview.astro';
 import siteConfig from '#site.config';
 import BaseLayout from '#layouts/Layout.astro';
-import { byDateDesc } from '#utils/data-utils';
+import { byDateDesc } from '#lib/utils';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	const projects = (await getCollection('projects')).sort(byDateDesc);

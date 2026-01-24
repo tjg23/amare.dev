@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import ArrowRight from '#assets/icons/arrow-right.svg';
 import Subscribe from '#components/Subscribe.astro';
 import BaseLayout from '#layouts/Layout.astro';
-import { getAllTags, getPostsByTag, byDateDesc } from '#utils/data-utils';
+import { getAllTags, getPostsByTag, byDateDesc } from '#lib/utils';
 
 const posts = (await getCollection('blog')).sort(byDateDesc);
 const tags = getAllTags(posts).sort((tagA, tagB) => {

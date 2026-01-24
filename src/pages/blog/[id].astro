@@ -6,8 +6,8 @@ import Button from '#components/Button.astro';
 import FormattedDate from '#components/FormattedDate.astro';
 import PostPreview from '#components/PostPreview.astro';
 import Subscribe from '#components/Subscribe.astro';
-import { byDateDesc } from '#utils/data-utils';
-import { slugify } from '#utils/common-utils';
+import { byDateDesc } from '#lib/utils';
+import { slugify } from '#lib/utils';
 
 export async function getStaticPaths() {
 	const posts = (await getCollection('blog')).sort(byDateDesc);

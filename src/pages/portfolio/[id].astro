@@ -2,7 +2,7 @@
 import { type CollectionEntry, getCollection, render } from 'astro:content';
 import ProjectPreview from '#components/ProjectPreview.astro';
 import BaseLayout from '#layouts/Layout.astro';
-import { byDateDesc } from '#utils/data-utils';
+import { byDateDesc } from '#lib/utils';
 
 export async function getStaticPaths() {
 	const projects = (await getCollection('projects')).sort(byDateDesc);

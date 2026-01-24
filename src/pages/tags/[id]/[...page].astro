@@ -7,7 +7,7 @@ import PostPreview from '#components/PostPreview.astro';
 import Subscribe from '#components/Subscribe.astro';
 import siteConfig from '#site.config';
 import BaseLayout from '#layouts/Layout.astro';
-import { getAllTags, getPostsByTag, byDateDesc } from '#utils/data-utils';
+import { getAllTags, getPostsByTag, byDateDesc } from '#lib/utils';
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 	const posts = (await getCollection('blog')).sort(byDateDesc);

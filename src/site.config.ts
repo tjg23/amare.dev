@@ -1,4 +1,4 @@
-import type { SiteConfig } from '#types';
+import type { SiteConfig } from '#lib/types';
 
 const siteConfig: SiteConfig = {
 	website: 'https://amare.dev',

@@ -6,7 +6,7 @@ import PostPreview from '#components/PostPreview.astro';
 import ProjectPreview from '#components/ProjectPreview.astro';
 import siteConfig from '#site.config';
 import BaseLayout from '#layouts/Layout.astro';
-import { byDateDesc } from '#utils/data-utils';
+import { byDateDesc } from '#lib/utils';
 
 const posts = (await getCollection('blog')).sort(byDateDesc);
 const featuredPosts = posts.filter(({ data }) => data.isFeatured);
