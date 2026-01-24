@@ -7,7 +7,6 @@ import siteConfig from './src/site.config';
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.website,
-	base: '/amare.dev',
 	vite: {
 		plugins: [tailwindcss()]
 	},

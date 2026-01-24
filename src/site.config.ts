@@ -1,7 +1,7 @@
 import type { SiteConfig } from '#types';
 
 const siteConfig: SiteConfig = {
-	website: 'https://tjg23.github.io',
+	website: 'https://amare.dev',
 	title: 'Tyler Gorton',
 	subtitle: 'Full Stack Developer',
 	description: 'Personal portfolio and blog of Tyler Gorton, a senior in Software Engineering and Philosophy at Iowa State University.',
