@@ -3,17 +3,18 @@ layout: ../layouts/MdLayout.astro
 title: About
 seo:
   title: About Me
-  description: Learn more about me, my interests, and my dreams.
+  description: Learn more about me and my interests both within and outside of software.
 ---
 
-Hi, I'm Tyler Gorton, a senior at Iowa State University pursuing a double major in Software Engineering and Philosophy.
+I'm Tyler Gorton, a senior at Iowa State University studying Software Engineering and Philosophy.
 I'm also an amateur full-stack developer looking for a place to start my career after I graduate this spring. By _amateur_,
-I don't just mean "unpaid" but rather the older definition: ["for the love of it"](https://www.merriam-webster.com/dictionary/amateur#did-you-know). 
+I don't mean "unpaid" but rather the older definition: ["for the love of it"](https://www.merriam-webster.com/dictionary/amateur#did-you-know). I love building software, and I strive to create software that people love to use. 
 
-<!--Today, the word _amateur_ is typically defined simply as "unpaid", and it often comes with the negative connotation of 
-being unskilled, having failed and fallen short of "professional". Originally, though, the word comes from the latin verb _amare_, meaning "to love" — an amateur is someone who does something for **the love of it**. I prefer that meaning, and it's the one I use when I describe myself as an amateur. I develop software for the love of it, regardless of whether I also get paid for it.-->
-<!--
-I originally decided to pursue a future in software when I was in middle school, shortly after my first programming experience.
-I had hoped to become a video game developer, as that was the medium that brought me the most happiness as a consumer. However,
-as I grew and matured, especially through my time in college, my hobbies and interests diverged greatly from what they were in
-middle school-->
+I decided to pursue a future in software engineering when I was in 8th grade, after having my first taste of development
+with [MIT App Inventor](https://appinventor.mit.edu/). I was arguably more of a nerd back then, so my initial dream was
+to be a video game developer, since gaming was my main hobby. Today, I'm more interested in software and technology
+that highlights the beauty of the real world over trying to create alternative digital ones — though I do still enjoy 
+some gaming.
+
+Outside the realm of computers, I love hanging out with my friends & family and try to spend as much time with them as
+I can. That usually involves playing games, watching movies, and going out camping, hiking, and especially climbing.
