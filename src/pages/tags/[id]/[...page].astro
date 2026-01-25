@@ -38,7 +38,7 @@ const currentTag = allTags.find((tag) => {
 	<h1 id="page-title">Posts Tagged "{currentTag?.name}"</h1>
 	{blog.map((post) => <PostPreview post={post} />)}
 	<Pagination page={page} />
-	<Subscribe />
+	<!-- <Subscribe /> -->
 </BaseLayout>
 
 <style is:global>
